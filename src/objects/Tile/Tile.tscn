@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/objects/pickable_sprite/Pickable_sprite.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/objects/Tile/Tile.gd" type="Script" id=2]
+[ext_resource path="res://assets/tiles.png" type="Texture" id=3]
+[ext_resource path="res://assets/boarder.png" type="Texture" id=4]
+
+[node name="Tile" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Sprite" parent="." index="0"]
+z_index = 2
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 256, 256 )
+
+[node name="Boarder" parent="." index="1"]
+visible = false
+z_index = 8
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 0, 512, 256, 256 )
+
+[node name="Click_detector" parent="." index="2"]
+position = Vector2( 1.18921, -1.18921 )
+
+[node name="Active_indicator" type="Sprite" parent="." index="3"]
+z_index = 4
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 0, 768, 256, 256 )

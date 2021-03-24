@@ -1,0 +1,70 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Reference",
+"class": "Occupied_info",
+"language": "GDScript",
+"path": "res://src/objects/Tile/Occupied_info.gd"
+}, {
+"base": "Node2D",
+"class": "Pickable_sprite",
+"language": "GDScript",
+"path": "res://src/objects/pickable_sprite/Pickable_sprite.gd"
+}, {
+"base": "Pickable_sprite",
+"class": "Player_piece",
+"language": "GDScript",
+"path": "res://src/objects/Player_piece/Player_piece.gd"
+}, {
+"base": "Reference",
+"class": "Structure",
+"language": "GDScript",
+"path": "res://src/objects/Grid/Structure.gd"
+}, {
+"base": "Reference",
+"class": "Structures_handler",
+"language": "GDScript",
+"path": "res://src/objects/Grid/Structures_handler.gd"
+}, {
+"base": "Pickable_sprite",
+"class": "Tile",
+"language": "GDScript",
+"path": "res://src/objects/Tile/Tile.gd"
+} ]
+_global_script_class_icons={
+"Occupied_info": "",
+"Pickable_sprite": "",
+"Player_piece": "",
+"Structure": "",
+"Structures_handler": "",
+"Tile": ""
+}
+
+[application]
+
+config/name="BoardGame"
+run/main_scene="res://src/objects/Table/Table.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+Globals="*res://src/Globals.gd"
+
+[display]
+
+window/size/width=1280
+window/size/height=720
+window/stretch/mode="2d"
+
+[rendering]
+
+environment/default_clear_color=Color( 0.0980392, 0.0980392, 0.0980392, 1 )
+environment/default_environment="res://default_env.tres"

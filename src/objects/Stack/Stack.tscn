@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/objects/pickable_sprite/Pickable_sprite.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/objects/Stack/Stack.gd" type="Script" id=2]
+[ext_resource path="res://assets/boarder.png" type="Texture" id=3]
+[ext_resource path="res://assets/tile_back.png" type="Texture" id=4]
+
+[node name="Stack" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource( 4 )
+
+[node name="Boarder" parent="." index="1"]
+visible = false
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 0, 512, 256, 256 )

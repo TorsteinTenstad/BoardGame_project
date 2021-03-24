@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://assets/open_piece_indicator.png" type="Texture" id=1]
+
+[node name="Open_piece_indicator" type="Sprite"]
+z_index = 7
+texture = ExtResource( 1 )
