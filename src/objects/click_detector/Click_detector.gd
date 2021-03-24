@@ -2,10 +2,14 @@ extends Area2D
 
 
 var trigger_on = [BUTTON_LEFT, BUTTON_RIGHT]
-
+export var size = Vector2(128, 128)
 
 signal clicked(button_index, pressed)
 
+
+
+func _ready():
+	scale = size
 
 
 func _on_Click_detector_input_event(viewport, event, shape_idx):

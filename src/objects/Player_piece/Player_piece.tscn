@@ -6,7 +6,7 @@
 [ext_resource path="res://src/objects/Player_piece/Player_piece.gd" type="Script" id=4]
 
 [node name="Player_piece" instance=ExtResource( 1 )]
-z_index = 4
+z_index = 30
 script = ExtResource( 4 )
 
 [node name="Sprite" parent="." index="0"]
@@ -19,3 +19,6 @@ visible = false
 texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 64, 64 )
+
+[node name="Click_detector" parent="." index="2"]
+size = Vector2( 32, 32 )

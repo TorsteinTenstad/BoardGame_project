@@ -49,6 +49,7 @@ func attempt_snap():
 func lock_free_tile(grid_pos):
 	free_tile.pickable = false
 	_grid[grid_pos] = free_tile
+	free_tile.z_index = z_index
 	structure_handler.update(free_tile.type, free_tile.orientation, grid_pos, free_tile.occupied_info)
 	free_tile = null
 	free_tile_is_snapped = false
@@ -60,7 +61,7 @@ func _create_empty_tiles(grid_pos):
 	for nudge in Globals.adjacent_nudges:
 			if not grid_pos + nudge in _grid.keys():
 				var empty_tile = Tile.instance()
-				empty_tile.get_node("Sprite").z_index = 0
+				empty_tile.z_index = z_index
 				empty_tile.pickable = false
 				empty_tile.position = (grid_pos + nudge)*Globals.tile_dimensions
 				_grid[grid_pos + nudge] = empty_tile

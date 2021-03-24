@@ -3,7 +3,7 @@
 [ext_resource path="res://src/objects/click_detector/Click_detector.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 128, 128 )
+extents = Vector2( 1, 1 )
 
 [node name="Click_detector" type="Area2D"]
 script = ExtResource( 1 )
