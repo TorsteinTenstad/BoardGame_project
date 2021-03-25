@@ -13,3 +13,10 @@ func set_info(structure_type0, section0, player0, pieces0):
 	player = player0
 	pieces = pieces0
 	return self
+
+
+func print():
+	print("Structure type: ", structure_type)
+	print("Section:", section)
+	print("Player: ", player)
+	print("Pieces: ", pieces)

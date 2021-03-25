@@ -14,6 +14,13 @@ func get_structure_id(structure_type, grid_pos, area):
 	return null
 
 
+func get_ownership(structure_type, structure_id):
+	if structure_id:
+		return structures[structure_type][structure_id].ownership
+	else:
+		return null
+
+
 func update(tile_id, tile_orientation, grid_pos, occupied_info):
 	for structure_type in Globals.tile_info[tile_id].keys():
 		for section in Globals.tile_info[tile_id][structure_type]:
@@ -24,11 +31,9 @@ func update(tile_id, tile_orientation, grid_pos, occupied_info):
 				pieces = occupied_info.pieces
 			var connected_structure_ids = []
 			for area in section:
-				var neigbour_area = get_neigbour(structure_type, grid_pos, area, tile_orientation)
-				if neigbour_area:
-					var structure_id = get_structure_id(structure_type, neigbour_area[0], neigbour_area[1])
-					if not structure_id in connected_structure_ids:
-						connected_structure_ids.append(structure_id)
+				var neigbour_area_id = get_neigbour_id(structure_type, grid_pos, area, tile_orientation)
+				if neigbour_area_id and not neigbour_area_id in connected_structure_ids:
+					connected_structure_ids.append(neigbour_area_id)
 			if connected_structure_ids:
 				for i in range(1, connected_structure_ids.size()):
 					structures[structure_type][connected_structure_ids[0]].join(structures[structure_type][connected_structure_ids[i]])
@@ -56,6 +61,14 @@ func get_neigbour(structure_type, grid_pos, area, tile_orientation):
 	if structure_type == 4 or area == 8:
 			return null
 	return neigbour_area
+
+
+func get_neigbour_id(structure_type, grid_pos, area, tile_orientation):
+	var neigbour_area = get_neigbour(structure_type, grid_pos, area, tile_orientation)
+	if neigbour_area:
+		return get_structure_id(structure_type, neigbour_area[0], neigbour_area[1])
+	else:
+		return null
 
 
 func add_sturcture(structure):

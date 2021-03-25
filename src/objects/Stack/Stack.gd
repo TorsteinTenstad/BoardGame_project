@@ -28,11 +28,10 @@ func _add_tile():
 		var tile = Tile.instance()
 		tile.connect('snap_requested', grid, '_on_Tile_snap_requested')
 		tile.type = [1, 3, 13, 18][rng.randi_range(0,3)]
-		tile.click(true)
+		tile.pick(BUTTON_LEFT, true)
 		emit_signal('tile_delivered', tile)
 		can_create_tile = false
 
 
 func _on_Grid_ready_for_tile():
 	can_create_tile = true
-	pass # Replace with function body.

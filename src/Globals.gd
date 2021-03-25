@@ -56,7 +56,15 @@ func _ready():
 
 
 func get_area_position(structure_type, area):
-	return Vector2(0,0)
+	if structure_type == 1 or structure_type == 2:
+		return Vector2(tile_size/2,0).rotated(-area*PI/2)
+	elif structure_type == 3:
+		if area == 8:
+			return Vector2(0,0)
+		else:
+			return Vector2(tile_size/2,0).rotated(-area*PI/4 - PI/8)
+	elif structure_type == 4 and area == 0:
+		return Vector2(0,0)
 
 
 func add_dictionarys(dict_a, dict_b):

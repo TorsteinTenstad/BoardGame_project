@@ -19,6 +19,7 @@ func _ready():
 	add_child(free_tile)
 	lock_free_tile(Vector2(0,0))
 
+
 func _to_grid_pos(position):
 	return ((position+Globals.tile_dimensions/Vector2(2,2))/Globals.tile_dimensions).floor()
 
@@ -31,6 +32,7 @@ func get_tile_orientation(grid_pos):
 
 
 func attempt_snap():
+	free_tile.occupiable_sections = {1: [], 2: [], 3: [], 4: []}
 	free_tile_is_snapped = false
 	var grid_pos = _to_grid_pos(free_tile.position)
 	if grid_pos in _grid.keys():
@@ -40,9 +42,20 @@ func attempt_snap():
 					var surrounding_tile = _grid[grid_pos + Globals.adjacent_nudges[i]]
 					var surrounding_edge = Globals.tile_edges[surrounding_tile.type][(i + surrounding_tile.orientation + 2) % 4]
 					if surrounding_edge and Globals.tile_edges[free_tile.type][(i + free_tile.orientation) % 4] != surrounding_edge:
-						return
+						return null
 			free_tile.position = grid_pos*Globals.tile_dimensions
 			free_tile_is_snapped = true
+			for structure_type in Globals.tile_info[free_tile.type].keys():
+				for section in Globals.tile_info[free_tile.type][structure_type]:
+					var section_is_unoccupied = true
+					for area in section:
+						var neigbour_area_id = structure_handler.get_neigbour_id(structure_type, grid_pos, area, free_tile.orientation)
+						if structure_handler.get_ownership(structure_type, neigbour_area_id):
+							section_is_unoccupied = false
+							print("Section uccupied")
+					if section_is_unoccupied:
+						free_tile.occupiable_sections[structure_type].append(section)
+			free_tile.show_open_positions()
 			return grid_pos
 
 

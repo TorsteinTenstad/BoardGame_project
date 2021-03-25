@@ -1,6 +1,9 @@
 extends Pickable_sprite
 class_name Tile
 
+var Open_piece_indicator = load("res://src/objects/Open_piece_indicator/Open_piece_indicator.tscn")
+
+
 #   position
 var type = 0
 var variation = 0
@@ -15,7 +18,7 @@ signal snap_requested()
 
 func attempt_snap(player_piece):
 	var distance = position - player_piece.position
-	if distance.x < 1.2*Globals.tile_size and distance.y < 1.2*Globals.tile_size and occupiable_sections:
+	if abs(distance.x) < 1.2*Globals.tile_size and abs(distance.y) < 1.2*Globals.tile_size and occupiable_sections:
 		occupied_info = Occupied_info.new()
 		var closest_area_position = null
 		for structure_type in occupiable_sections.keys():
@@ -31,6 +34,16 @@ func attempt_snap(player_piece):
 	occupied_info = null
 	#detach child
 	return false
+
+
+func show_open_positions():
+	for structure_type in occupiable_sections.keys():
+			for section in occupiable_sections[structure_type]:
+				for area in section:
+					var area_position = Globals.get_area_position(structure_type, area)
+					var indicator = Open_piece_indicator.instance()
+					add_child(indicator)
+					indicator.position = area_position
 
 
 func _process(delta):
@@ -51,5 +64,5 @@ func _on_Click_detector_clicked(button_index, pressed):
 		orientation = (orientation + 1) % 4
 
 
-#func _on_Player_piece_snap_requested(player_piece):
-#	attempt_snap(player_piece)
+func _on_Player_piece_snap_requested(player_piece):
+	attempt_snap(player_piece)

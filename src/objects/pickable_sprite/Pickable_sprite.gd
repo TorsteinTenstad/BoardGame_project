@@ -21,11 +21,11 @@ func _process(delta):
 
 
 func _on_Click_detector_clicked(button_index, pressed):
+	pick(button_index, pressed)
+
+
+func pick(button_index, pressed):
 	if button_index == move_button and pickable:
-		click(pressed)
-
-
-func click(pressed):
 		_drag_start_pos = get_global_mouse_position() - position
 		_follow_curser = pressed
 		get_node("Boarder").visible = pressed != invert_boarder
